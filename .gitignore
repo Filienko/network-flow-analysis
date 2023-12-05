@@ -1,10 +1,6 @@
 # Compiled class file
 *.class
 .idea/
-bipartite_examples/
-fixeddegree_examples/
-mesh_examples/
-random_examples/
 # Log file
 *.log
 

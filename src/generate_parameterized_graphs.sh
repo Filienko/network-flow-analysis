@@ -47,7 +47,7 @@ run_mesh_script() {
 
     mkdir -p "$output_dir"
     local output_file="$output_dir/output_mesh_${rows}_${columns}.txt"
-    ./"mesh.sh" "$rows" "$columns" > "$output_file" > /dev/null
+    ./"mesh.sh" "$rows" "$columns" > "$output_file"
 }
 
 # Function to run the Java random script with the given parameter values
@@ -76,8 +76,8 @@ initial_nodes_sink=$(generate_random_number 500 1000)
 initial_dense=$(generate_random_number 1 89)
 initial_minCapacity=$(generate_random_number 100 150)
 initial_maxCapacity=$(generate_random_number 160 500)
-initial_rows=$(generate_random_number 10 15)
-initial_columns=$(generate_random_number 10 50)
+initial_rows=$(generate_random_number 50 150)
+initial_columns=$(generate_random_number 100 150)
 initial_maxProbability=$(generate_random_float 0 1)
 
 # Loop to test all possible combinations of parameter values for the bipartite script
@@ -117,7 +117,7 @@ done
 # Loop to test all possible combinations of parameter values for the random script
 output_dir_random="random_examples"
 for nodes_source in $(seq $initial_nodes_source $big_Step $((initial_nodes_source + $big_Step * $point_number))); do
-    for dense in $(seq $initial_dense 20 $((100))); do
+    for dense in $(seq $initial_dense $small_Step $((100))); do
         for minCapacity in $(seq $initial_minCapacity $medium_Step $((initial_minCapacity + $medium_Step * $point_number))); do
             for maxCapacity in $(seq $initial_maxCapacity $medium_Step $((initial_maxCapacity + $medium_Step * $point_number))); do
                 run_random_script "$output_dir_random" "$nodes_source" "$dense" "$maxCapacity" "$minCapacity"
